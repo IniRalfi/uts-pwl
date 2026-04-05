@@ -4,17 +4,14 @@ import { serveStatic } from "hono/bun";
 
 const app = new Hono();
 
-// static file (CSS)
-app.use("/css/*", serveStatic({ root: "./src/public" }));
-
-// routes
-app.route("/", router);
-
-// middleware untuk set currentPath agar bisa digunakan di layout.ejs untuk active menu
 app.use("*", async (c, next) => {
-  c.set("currentPath", c.req.path);
+  console.log(`[Server] Incoming request: ${c.req.method} ${c.req.path}`);
   await next();
+  console.log(`[Server] Response sent for: ${c.req.path}`);
 });
+
+app.use("/css/*", serveStatic({ root: "./src/public" }));
+app.route("/", router);
 
 export default {
   port: 3000,
