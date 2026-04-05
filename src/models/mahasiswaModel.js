@@ -1,21 +1,36 @@
-let mahasiswa = [
-{ id: 1, nama: "Budi", nim: "12345" },
-];
-export const getAll = () => mahasiswa;
-export const getById = (id) =>
-mahasiswa.find((m) => m.id == id);
-export const create = (data) => {
-const newData = {
-id: Date.now(),
-...data,
+import prisma from '../config/prisma';
+
+export const getAll = async () => {
+  return await prisma.mahasiswa.findMany();
 };
-mahasiswa.push(newData);
+
+export const getById = async (id) => {
+  return await prisma.mahasiswa.findUnique({
+    where: { id: parseInt(id) }
+  });
 };
-export const update = (id, data) => {
-mahasiswa = mahasiswa.map((m) =>
-m.id == id ? { ...m, ...data } : m
-);
+
+export const create = async (data) => {
+  return await prisma.mahasiswa.create({
+    data: {
+      nama: data.nama,
+      nim: data.nim
+    }
+  });
 };
-export const remove = (id) => {
-mahasiswa = mahasiswa.filter((m) => m.id != id);
+
+export const update = async (id, data) => {
+  return await prisma.mahasiswa.update({
+    where: { id: parseInt(id) },
+    data: {
+      nama: data.nama,
+      nim: data.nim
+    }
+  });
+};
+
+export const remove = async (id) => {
+  return await prisma.mahasiswa.delete({
+    where: { id: parseInt(id) }
+  });
 };
