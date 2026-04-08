@@ -8,23 +8,15 @@
     <%= title %>
   </title>
   <link href="/css/output.css" rel="stylesheet">
-
-  <!-- Font Keren: Inter dari Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
-
-  <!-- Icon Set Premium: Phosphor Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
   <style>
     body {
       font-family: 'Inter', sans-serif;
     }
 
-    /* Custom Scrollbar Mulus */
     ::-webkit-scrollbar {
       width: 8px;
       height: 8px;
@@ -46,17 +38,12 @@
 </head>
 
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-200">
-  <!-- WRAPPER -->
   <div class="flex h-screen overflow-hidden">
 
-    <!-- SIDEBAR (DARK MODE ELEGAN) -->
     <aside id="sidebar"
       class="bg-slate-900 text-slate-300 w-72 flex flex-col absolute z-50 inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-in-out shadow-2xl md:shadow-none">
-
-      <!-- LOGO AREA -->
       <div class="flex items-center justify-center h-20 border-b border-slate-800 mt-2">
         <div class="flex items-center gap-3">
-          <!-- Icon Logo -->
           <div
             class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-600/30">
             <i class="ph-bold ph-student text-2xl"></i>
@@ -66,18 +53,15 @@
         </div>
       </div>
 
-      <!-- NAVIGATION -->
       <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
         <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4 px-3">Menu Utama</p>
 
-        <!-- Dashboard Link -->
         <a href="/"
           class="flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 <%= currentPath === '/' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20 font-medium' : 'hover:bg-slate-800 hover:text-white' %>">
           <i class="ph <%= currentPath === '/' ? 'ph-squares-four-fill' : 'ph-squares-four' %> text-xl"></i>
           <span>Dashboard</span>
         </a>
 
-        <!-- Master Menu Dropdown -->
         <div class="mt-2 text-sm">
           <button onclick="toggleMenu()"
             class="w-full flex items-center justify-between px-3 py-3 rounded-xl transition-all duration-200 hover:bg-slate-800 hover:text-white">
@@ -85,12 +69,10 @@
               <i class="ph ph-database text-xl"></i>
               <span class="text-base">Data Master</span>
             </div>
-            <!-- Panah Chevron Animasi -->
             <i id="master-chevron"
               class="ph ph-caret-down transition-transform duration-300 <%= currentPath.includes('/mahasiswa') ? 'rotate-180' : '' %>"></i>
           </button>
 
-          <!-- Submenu -->
           <div id="submenu" class="<%= currentPath.includes('/mahasiswa') ? '' : 'hidden' %> mt-2 space-y-1">
             <a href="/mahasiswa"
               class="flex items-center gap-3 pl-11 pr-3 py-2.5 rounded-xl transition-all duration-200 <%= currentPath.includes('/mahasiswa') ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20 font-medium' : 'text-slate-400 hover:bg-slate-800 hover:text-white' %>">
@@ -98,23 +80,10 @@
                 class="ph <%= currentPath.includes('/mahasiswa') ? 'ph-users-three-fill' : 'ph-users-three' %> text-lg"></i>
               <span>Mahasiswa</span>
             </a>
-
-            <a href="#"
-              class="flex items-center gap-3 pl-11 pr-3 py-2.5 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800 hover:text-white cursor-not-allowed">
-              <i class="ph ph-chalkboard-teacher text-lg"></i>
-              <span>Dosen</span>
-            </a>
-
-            <a href="#"
-              class="flex items-center gap-3 pl-11 pr-3 py-2.5 rounded-xl transition-all duration-200 text-slate-400 hover:bg-slate-800 hover:text-white cursor-not-allowed">
-              <i class="ph ph-books text-lg"></i>
-              <span>Mata Kuliah</span>
-            </a>
           </div>
         </div>
       </nav>
 
-      <!-- SIDEBAR FOOTER INDICATOR -->
       <div class="p-4 border-t border-slate-800">
         <div class="bg-slate-800 p-4 rounded-xl flex items-center justify-center gap-3 border border-slate-700">
           <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]"></div>
@@ -123,19 +92,14 @@
       </div>
     </aside>
 
-    <!-- MOBILE OVERLAY BACKDROP -->
     <div id="mobile-overlay"
       class="hidden fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm transition-opacity md:hidden"
       onclick="toggleSidebar()"></div>
 
-    <!-- MAIN CONTENT AREA -->
     <div class="flex-1 flex flex-col min-w-0">
-
-      <!-- NAVBAR UTAMA (GLASSMORPHISM) -->
       <header
         class="bg-white/70 backdrop-blur-md border-b border-slate-200 h-20 flex items-center justify-between px-6 sticky top-0 z-30">
         <div class="flex items-center gap-4">
-          <!-- Hamburger Button untuk mobile -->
           <button class="md:hidden text-slate-500 hover:text-indigo-600 transition-colors p-2 rounded-lg bg-slate-100"
             onclick="toggleSidebar()">
             <i class="ph ph-list text-2xl"></i>
@@ -145,19 +109,13 @@
           </h1>
         </div>
 
-        <!-- Header Kanan: Notifikasi & Profile -->
         <div class="flex items-center gap-4">
-
           <button
             class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200 hover:text-indigo-600 transition-all relative">
             <i class="ph ph-bell text-xl"></i>
             <span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
           </button>
-
-          <!-- Garis Pembatas -->
           <div class="w-px h-8 bg-slate-200"></div>
-
-          <!-- Profile Menu -->
           <div class="relative">
             <button onclick="toggleProfile()" class="flex items-center gap-3 focus:outline-none group">
               <div class="text-right hidden sm:block">
@@ -168,7 +126,6 @@
                 class="w-10 h-10 rounded-full border-2 border-indigo-100 shadow-sm object-cover">
               <i class="ph ph-caret-down text-slate-400 text-xs"></i>
             </button>
-
             <div id="profileMenu"
               class="hidden absolute right-0 mt-3 w-48 bg-white border border-slate-100 shadow-xl rounded-xl overflow-hidden origin-top-right transition-all">
               <div class="px-4 py-3 border-b border-slate-50 bg-slate-50/50">
@@ -176,16 +133,6 @@
                 <p class="text-xs text-slate-500 truncate">admin@kampus.ac.id</p>
               </div>
               <div class="py-1">
-                <a href="#"
-                  class="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-indigo-600">
-                  <i class="ph ph-user"></i> My Profile
-                </a>
-                <a href="#"
-                  class="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-indigo-600">
-                  <i class="ph ph-gear"></i> Settings
-                </a>
-              </div>
-              <div class="py-1 border-t border-slate-100">
                 <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50">
                   <i class="ph ph-sign-out"></i> Log Out
                 </a>
@@ -195,36 +142,25 @@
         </div>
       </header>
 
-      <!-- INJEKSI KONTEN HALAMAN -->
       <main class="p-6 sm:p-8 flex-1 overflow-y-auto">
         <%- body %>
       </main>
-
     </div>
   </div>
 
-  <!-- SCRIPT -->
   <script>
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('-translate-x-full');
-      const overlay = document.getElementById('mobile-overlay');
-      overlay.classList.toggle('hidden');
+      document.getElementById('mobile-overlay').classList.toggle('hidden');
     }
-
     function toggleMenu() {
       document.getElementById('submenu').classList.toggle('hidden');
       document.getElementById('master-chevron').classList.toggle('rotate-180');
     }
-
-    function toggleProfile() {
-      document.getElementById('profileMenu').classList.toggle('hidden');
-    }
-
-    // Biar kalo ngeklik di luar menu profile, popup-nya ikutan ketutup otomatis
+    function toggleProfile() { document.getElementById('profileMenu').classList.toggle('hidden'); }
     document.addEventListener('click', function (event) {
       const profileMenu = document.getElementById('profileMenu');
-      const profileButton = profileMenu.previousElementSibling;
-      if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+      if (profileMenu && !profileMenu.previousElementSibling.contains(event.target) && !profileMenu.contains(event.target)) {
         profileMenu.classList.add('hidden');
       }
     });

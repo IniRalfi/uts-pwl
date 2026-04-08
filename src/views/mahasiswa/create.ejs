@@ -1,39 +1,76 @@
-<div class="max-w-2xl bg-white p-6 rounded-2xl shadow">
-  <div class="mb-6">
-    <h2 class="text-2xl font-bold text-gray-800">Tambah Mahasiswa</h2>
-    <p class="text-gray-500">Masukkan data lengkap mahasiswa baru</p>
+<div class="max-w-xl mx-auto">
+  <!-- Header -->
+  <div class="mb-6 flex items-center gap-3">
+    <a href="/mahasiswa"
+      class="w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-indigo-600 transition-colors shadow-sm">
+      <i class="ph ph-arrow-left text-xl"></i>
+    </a>
+    <div>
+      <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Tambah Mahasiswa</h2>
+      <p class="text-sm text-slate-500 mt-0.5">Masukkan data identitas mahasiswa baru</p>
+    </div>
   </div>
 
-  <% if (typeof error !=='undefined' && error) { %>
-    <div class="bg-red-100 text-red-700 p-4 rounded-lg mb-4">
-      <%= error %>
-    </div>
-    <% } %>
+  <!-- Form Card -->
+  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden relative">
+    <!-- Dekorasi aksen atas -->
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-blue-500"></div>
 
-      <form action="/mahasiswa" method="POST" class="space-y-4">
-        <div>
-          <label class="block text-gray-700 mb-2 font-semibold">NIM Mahasiswa</label>
-          <input type="text" name="nim"
-            class="w-full border border-gray-300 px-4 py-2 rounded-lg outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
-            placeholder="Contoh: 12345678" required>
-        </div>
+    <% if (typeof error !=='undefined' && error) { %>
+      <div class="bg-red-50/80 border-b border-red-100 text-red-600 px-6 py-4 flex items-center gap-3">
+        <i class="ph-fill ph-warning-circle text-xl"></i>
+        <p class="text-sm font-medium">
+          <%= error %>
+        </p>
+      </div>
+      <% } %>
 
-        <div>
-          <label class="block text-gray-700 mb-2 font-semibold">Nama Lengkap</label>
-          <input type="text" name="nama"
-            class="w-full border border-gray-300 px-4 py-2 rounded-lg outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
-            placeholder="Contoh: Budi Santoso" required>
-        </div>
+        <form action="/mahasiswa" method="POST" class="p-6 sm:p-8 space-y-6">
 
-        <div class="pt-4 flex space-x-2">
-          <button type="submit"
-            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition">
-            Simpan Data
-          </button>
-          <a href="/mahasiswa"
-            class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-lg font-semibold transition">
-            Batal
-          </a>
-        </div>
-      </form>
+          <!-- Input NIM -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-slate-700">NIM Mahasiswa <span
+                class="text-red-500">*</span></label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <i class="ph ph-identification-card text-lg"></i>
+              </div>
+              <input type="text" name="nim"
+                class="w-full pl-11 pr-4 py-2.5 bg-slate-50 border border-slate-200 text-slate-800 rounded-xl outline-none focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all font-medium"
+                placeholder="Contoh: 12345678" required>
+            </div>
+          </div>
+
+          <!-- Input Nama -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-slate-700">Nama Lengkap <span
+                class="text-red-500">*</span></label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <i class="ph ph-user text-lg"></i>
+              </div>
+              <input type="text" name="nama"
+                class="w-full pl-11 pr-4 py-2.5 bg-slate-50 border border-slate-200 text-slate-800 rounded-xl outline-none focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all font-medium"
+                placeholder="Contoh: Budi Santoso" required>
+            </div>
+          </div>
+
+          <hr class="border-slate-100 my-2">
+
+          <!-- Action Buttons -->
+          <div class="flex items-center gap-3 pt-2">
+            <button type="submit"
+              class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-xl font-medium transition-all shadow-md shadow-indigo-600/20 active:scale-[0.98]">
+              <div class="flex items-center justify-center gap-2">
+                <i class="ph ph-check-circle text-lg"></i>
+                <span>Simpan Data</span>
+              </div>
+            </button>
+            <a href="/mahasiswa"
+              class="flex-none bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 px-6 py-2.5 rounded-xl font-medium transition-all text-center">
+              Batal
+            </a>
+          </div>
+        </form>
+  </div>
 </div>
