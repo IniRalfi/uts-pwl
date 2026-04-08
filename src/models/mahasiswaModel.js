@@ -22,3 +22,6 @@ export const remove = async (id) =>
   await prisma.mahasiswa.delete({
     where: { id: parseInt(id) },
   });
+
+// TAMBAHKAN FUNGSI INI
+export const count = async () => await prisma.mahasiswa.count();
